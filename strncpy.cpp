@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 char *strncpy_(char *dest, const char *src, size_t count)
     {
     int i = 0;
@@ -5,6 +7,7 @@ char *strncpy_(char *dest, const char *src, size_t count)
         {
         dest[i] = src[i];
         }
+
     for (; i < count; ++i)
         {
         dest[i] = '\0';
