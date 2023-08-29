@@ -2,16 +2,16 @@
 
 char *strncpy_(char *dest, const char *src, size_t count)
     {
+    char *dest_copy = dest;
+
     int i = 0;
-    for (; src[i] && i < count; ++i)
-        {
-        dest[i] = src[i];
-        }
+    for (; (*dest++ = *src++) && i < count; ++i);
+    ++i;
 
     for (; i < count; ++i)
         {
-        dest[i] = '\0';
+        *dest++ = '\0';
         }
 
-    return dest;
+    return dest_copy;
     }

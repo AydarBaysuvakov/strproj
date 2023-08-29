@@ -1,12 +1,8 @@
 char *strcpy_(char *dest, const char *src)
     {
-    int i = 0;
-    for (; src[i]; ++i)
-        {
-        dest[i] = src[i];
-        }
+    char *dest_copy = dest;
 
-    dest[i] = '\0';
+    while (*dest++ = *src++);
 
-    return dest;
+    return dest_copy;
     }

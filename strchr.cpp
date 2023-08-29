@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 const char *strchr_(const char *str, int ch)
     {
     for (; *str; ++str)
