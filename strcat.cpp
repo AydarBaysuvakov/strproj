@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 char *strcat_(char *dest, const char *src)
     {
     char *dest_p_copy = dest;
