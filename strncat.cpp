@@ -2,21 +2,18 @@
 
 char *strncat_(char *dest, const char *src, size_t count)
     {
+    char *dest_p_copy = dest;
+
+    while (*++dest);
+
     int i = 0;
-    for (; dest[i]; ++i);
+    for (; (*dest++ = *src++) && i < count; ++i);
+    ++i;
 
-    int j = 0;
-    for (; src[j] && j < count; ++i, ++j)
+    for (; i < count; ++i)
         {
-        dest[i] = src[j];
+        *dest++ = '\0';
         }
 
-    for (; j < count; ++j, ++i)
-        {
-        dest[i] = '\0';
-        }
-
-    dest[i] = '\0';
-
-    return dest;
+    return dest_p_copy;
     }

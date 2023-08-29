@@ -1,15 +1,12 @@
+#include <stdio.h>
+
 char *strcat_(char *dest, const char *src)
     {
-    int i = 0;
-    for (; dest[i]; ++i);
+    char *dest_p_copy = dest;
 
-    int j = 0;
-    for (; src[j]; ++i, ++j)
-        {
-        dest[i] = src[j];
-        }
+    while (*++dest);
 
-    dest[i] = '\0';
+    while (*dest++ = *src++);
 
-    return dest;
+    return dest_p_copy;
     }
