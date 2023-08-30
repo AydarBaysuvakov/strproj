@@ -7,7 +7,6 @@ int puts_(const char* str)
         {
         if (putchar(*str) == EOF)
             {
-            perror("puts_()");
             return EOF;
             }
         }
@@ -33,7 +32,10 @@ const char *strchr_(const char *str, int ch)
 int strlen_( const char *str )
     {
     int size = 0;
-    for (; *str; ++str, ++size);
+    for (; *str; ++str, ++size)
+        {
+        /* Do nothing */
+        }
 
     return size;
     }
@@ -42,7 +44,10 @@ char *strcpy_(char *dest, const char *src)
     {
     char *dest_p_copy = dest;
 
-    while (*dest++ = *src++);
+    while (*dest++ = *src++)
+        {
+        /* Do nothing */
+        }
 
     return dest_p_copy;
     }
@@ -51,9 +56,11 @@ char *strncpy_(char *dest, const char *src, size_t count)
     {
     char *dest_p_copy = dest;
 
-    int i = 0;
-    for (; (*dest++ = *src++) && i < count; ++i);
-    ++i;
+    int i = 1;
+    for (; (*dest++ = *src++) && i < count; ++i)
+        {
+        /* Do nothing */
+        }
 
     for (; i < count; ++i)
         {
@@ -67,9 +74,12 @@ char *strcat_(char *dest, const char *src)
     {
     char *dest_p_copy = dest;
 
-    while (*++dest);
+    dest += strlen_(dest);
 
-    while (*dest++ = *src++);
+    while (*dest++ = *src++)
+        {
+        /* Do nothing */
+        }
 
     return dest_p_copy;
     }
@@ -78,11 +88,13 @@ char *strncat_(char *dest, const char *src, size_t count)
     {
     char *dest_p_copy = dest;
 
-    while (*++dest);
+    dest += strlen_(dest);
 
-    int i = 0;
-    for (; (*dest++ = *src++) && i < count; ++i);
-    ++i;
+    int i = 1;
+    for (; (*dest++ = *src++) && i < count; ++i)
+        {
+        /* Do nothing */
+        }
 
     for (; i < count; ++i)
         {
@@ -96,7 +108,7 @@ char *fgets_(char *str, int count, FILE *stream)
     {
     char* copy_str_p = str;
 
-    for (int i = 0; (i < count - 1) && ((*str = getc(stream)) != EOF);i++, str++)
+    for (int i = 0; (i < count - 1) && ((*str = getc(stream)) != EOF); i++, str++) // fgetc???
         {
         if (*str == '\n')
             {
@@ -104,11 +116,15 @@ char *fgets_(char *str, int count, FILE *stream)
             }
         }
 
-    *++str = '\0';
+    *(++str) = '\0';
     return copy_str_p;
     }
 
 char *strdup_( const char *src )
     {
-    return strcpy_((char*) calloc(strlen_(src), sizeof *src), src);
+    return strcpy_((char*) calloc(strlen_(src), sizeof(char)), src); // K&R
     }
+
+//todo:
+//strstr
+//getline

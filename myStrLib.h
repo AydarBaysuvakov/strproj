@@ -1,3 +1,9 @@
+#ifndef __STRLIB__
+#define __STRLIB__
+
+#include <stdio.h>
+#include <stdlib.h>
+
 /// @brief Writes every character from the null-terminated string str and one additional newline character '\n' to the output stream stdout.
 /// @param [in] str  character string to be written
 /// @return On success, returns a non-negative value. On failure, returns EOF and sets the error indicator (see ferror()) on stream.
@@ -52,3 +58,5 @@ char *fgets_( char *str, int count, FILE *stream );
 /// @param src pointer to the null-terminated byte string to duplicate.
 /// @return A pointer to the newly allocated string, or a null pointer if an error occurred.
 char *strdup_( const char *src );
+
+#endif //__STRLIB__
