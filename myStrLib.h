@@ -59,4 +59,17 @@ char *fgets_( char *str, int count, FILE *stream );
 /// @return A pointer to the newly allocated string, or a null pointer if an error occurred.
 char *strdup_( const char *src );
 
+/// @brief Reads from the stream stream as if by fgetc, until delimiter is encountered, storing the characters in the buffer of size *n pointed to by *lineptr, automatically increasing its size as if by realloc to fit the entire input, including the delimiter, and adding a null terminator. *lineptr may be null, in which case *n is ignored and getline allocates a new buffer as if by malloc. The behavior is undefined if delimiter has a value that is outside the range of unsigned char or EOF.
+/// @param lineptr pointer to a pointer to the initial buffer or to a null pointer.
+/// @param n pointer to the size of the initial buffer.
+/// @param stream valid input stream, opened by fopen.
+/// @return The number of characters stored in the buffer, including the delimiter, but excluding the null terminator.
+ssize_t getline_(char **lineptr, size_t *n, FILE *stream);
+
+/// @brief Finds the first occurrence of the null-terminated byte string pointed to by substr in the null-terminated byte string pointed to by str. The terminating null characters are not compared.
+/// @param str pointer to the null-terminated byte string to examine.
+/// @param substr pointer to the null-terminated byte string to search for.
+/// @return Pointer to the first character of the found substring in str, or a null pointer if such substring is not found. If substr points to an empty string, str is returned.
+char *strstr_(const char *str, const char *substr);
+
 #endif //__STRLIB__

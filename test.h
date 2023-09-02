@@ -18,4 +18,10 @@ TestFeedback test_strncat(const char *dest_example, const char *src, size_t coun
 
 TestFeedback test_strdup(const char *str);
 
+TestFeedback test_fgets(int count, const char *file);
+
+TestFeedback test_getline(int n, const char *file);
+
+TestFeedback test_strstr(const char *str, const char *substr);
+
 int TestAll();

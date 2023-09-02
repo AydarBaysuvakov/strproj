@@ -5,10 +5,6 @@
 #include "colour.h"
 #include "test.h"
 
-// Чтобы не писать сообщения
-// ls --verbose
-//PrintfVerbose()
-
 TestFeedback test_strlen(const char* str)
     {
     assert(str != NULL);
@@ -149,17 +145,94 @@ TestFeedback test_strdup(const char *str)
         }
     }
 
+TestFeedback test_strstr(const char *str, const char *substr)
+    {
+    assert(str != NULL);
+    assert(substr != NULL);
+
+    const char *res = strstr_(str, substr), *resRef = strstr(str, substr);
+
+    if ((res == NULL && res == resRef) || !strcmp(res, resRef))
+        {
+        ColouredPrintf(GREEN, "OK\n");
+        return TEST_ACEPTED;
+        }
+    else
+        {
+        ColouredPrintf(RED, "ERROR: res = %s\nEXCEPTED: res = %s\n\n", res, resRef);
+        return TEST_FAILED;
+        }
+    }
+
+TestFeedback test_fgets(int count, const char* file)
+    {
+    assert(file != NULL);
+
+    FILE *fp;
+    fp = fopen(file, "r");
+
+    char res[count + 1] = "";
+    char resRef[count + 1] = "";
+    fgets_(res, count, fp);
+
+    fp = freopen(file, "r", fp);
+    fgets(resRef, count, fp);
+
+    if (!strcmp(res, resRef))
+        {
+        ColouredPrintf(GREEN, "OK\n");
+        return TEST_ACEPTED;
+        }
+    else
+        {
+        ColouredPrintf(RED, "ERROR: res = %s\nEXCEPTED: res = %s\n\n", res, resRef);
+        return TEST_FAILED;
+        }
+    }
+
+TestFeedback test_getline(int n, const char* file)
+    {
+    assert(file != NULL);
+
+    FILE *fp;
+    fp = fopen(file, "r");
+    size_t count = n, countRef = n;
+    char *res = (char*) calloc(n, sizeof(char));
+    char *resRef = (char*) calloc(n, sizeof(char));
+
+    if (!n)
+        {
+        res = nullptr;
+        resRef = nullptr;
+        }
+
+    int len = getline_(&res, &count, fp);
+    fp = freopen(file, "r", fp);
+    int lenRef = getline(&resRef, &countRef, fp);
+
+    if (!strcmp(res, resRef) && (len == lenRef))
+        {
+        ColouredPrintf(GREEN, "OK\n");
+        return TEST_ACEPTED;
+        }
+    else
+        {
+        ColouredPrintf(RED, "ERROR: res = %s, count = %d, len = %d\nEXCEPTED: res = %s, count = %d, len = %d\n\n",
+        res, count, len, resRef, countRef, lenRef);
+        return TEST_FAILED;
+        }
+    }
+
 int TestAll()
     {
-    //puts_test
-    //fgets_test
-    //strstr_test
-    //getline_test
-
-    // По поводу тестов puts, fgets
     // #define
     // RUN_TEST(test_strlen, "...");
-    // freopen
+
+    // Чтобы не писать сообщения
+    // ls --verbose
+    //PrintfVerbose()
+
+
 
     int nTestAcepted = 0;
 
@@ -213,6 +286,27 @@ int TestAll()
     nTestAcepted += test_strdup("");
     nTestAcepted += test_strdup("    ");
     nTestAcepted += test_strdup("absd121\0gfdhgfd");
+
+    // strstr
+    nTestAcepted += test_strstr("Hello world!", "world");
+    nTestAcepted += test_strstr("Hello world!", "Hello");
+    nTestAcepted += test_strstr("Hello world!", "o");
+    nTestAcepted += test_strstr("Hello world!", "!");
+    nTestAcepted += test_strstr("Hello world!", "");
+    nTestAcepted += test_strstr("Hello world!", "bye");
+    nTestAcepted += test_strstr("Hello world!", "j");
+    nTestAcepted += test_strstr("aaaaaaaaaaaaaa", "aaaaaaaa");
+    nTestAcepted += test_strstr("aaaaabbbbbbbbbbb", "bbbbb");
+    nTestAcepted += test_strstr("aaabbbccc", "bbbb");
+    nTestAcepted += test_strstr("chachachack", "chack");
+
+    // fgets
+    nTestAcepted += test_fgets(10, "testfile.txt");
+    nTestAcepted += test_fgets(20, "testfile.txt");
+
+    // getline
+    nTestAcepted += test_getline(10, "testfile.txt");
+    nTestAcepted += test_getline(0, "testfile.txt");
 
     ColouredPrintf(YELLOW, "%d tests acepted\n", nTestAcepted);
 
