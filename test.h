@@ -1,3 +1,7 @@
+#define RUN_TEST(func, ...) func(__VA_ARGS__)
+
+#ifndef __TEST__
+#define __TEST__
 enum TestFeedback
     {
     TEST_FAILED  = 0,
@@ -25,3 +29,4 @@ TestFeedback test_getline(int n, const char *file);
 TestFeedback test_strstr(const char *str, const char *substr);
 
 int TestAll();
+#endif //__TEST__

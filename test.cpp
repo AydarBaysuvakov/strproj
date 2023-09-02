@@ -225,9 +225,6 @@ TestFeedback test_getline(int n, const char* file)
 
 int TestAll()
     {
-    // #define
-    // RUN_TEST(test_strlen, "...");
-
     // Чтобы не писать сообщения
     // ls --verbose
     //PrintfVerbose()
@@ -237,76 +234,76 @@ int TestAll()
     int nTestAcepted = 0;
 
     // strlen
-    nTestAcepted += test_strlen("Hello world!");
-    nTestAcepted += test_strlen("");
-    nTestAcepted += test_strlen("    ");
-    nTestAcepted += test_strlen("absd121\0gfdhgfd");
+    nTestAcepted += RUN_TEST(test_strlen, "Hello world!");
+    nTestAcepted += RUN_TEST(test_strlen, "");
+    nTestAcepted += RUN_TEST(test_strlen, "    ");
+    nTestAcepted += RUN_TEST(test_strlen, "absd121\0gfdhgfd");
 
     // strchr
-    nTestAcepted += test_strchr("Hello world!", 'H');
-    nTestAcepted += test_strchr("Hello world!", 'w');
-    nTestAcepted += test_strchr("Hello world!", ' ');
-    nTestAcepted += test_strchr("Hello world!", 'k');
+    nTestAcepted += RUN_TEST(test_strchr, "Hello world!", 'H');
+    nTestAcepted += RUN_TEST(test_strchr, "Hello world!", 'w');
+    nTestAcepted += RUN_TEST(test_strchr, "Hello world!", ' ');
+    nTestAcepted += RUN_TEST(test_strchr, "Hello world!", 'k');
 
     // strcpy
-    nTestAcepted += test_strcpy("Hello world!");
-    nTestAcepted += test_strcpy("");
-    nTestAcepted += test_strcpy("    ");
-    nTestAcepted += test_strcpy("absd121\0gfdhgfd");
+    nTestAcepted += RUN_TEST(test_strcpy, "Hello world!");
+    nTestAcepted += RUN_TEST(test_strcpy, "");
+    nTestAcepted += RUN_TEST(test_strcpy, "    ");
+    nTestAcepted += RUN_TEST(test_strcpy, "absd121\0gfdhgfd");
 
     // strncpy
-    nTestAcepted += test_strncpy("Hello world!", 8);
-    nTestAcepted += test_strncpy("Hello world!", 40);
-    nTestAcepted += test_strncpy("", 0);
-    nTestAcepted += test_strncpy("", 5);
-    nTestAcepted += test_strncpy("    ", 2);
-    nTestAcepted += test_strncpy("    ", 4);
-    nTestAcepted += test_strncpy("    ", 6);
-    nTestAcepted += test_strncpy("absd121\0gfdhgfd", 5);
-    nTestAcepted += test_strncpy("absd121\0gfdhgfd", 10);
-    nTestAcepted += test_strncpy("absd121\0gfdhgfd", 20);
+    nTestAcepted += RUN_TEST(test_strncpy, "Hello world!", 8);
+    nTestAcepted += RUN_TEST(test_strncpy, "Hello world!", 40);
+    nTestAcepted += RUN_TEST(test_strncpy, "", 0);
+    nTestAcepted += RUN_TEST(test_strncpy, "", 5);
+    nTestAcepted += RUN_TEST(test_strncpy, "    ", 2);
+    nTestAcepted += RUN_TEST(test_strncpy, "    ", 4);
+    nTestAcepted += RUN_TEST(test_strncpy, "    ", 6);
+    nTestAcepted += RUN_TEST(test_strncpy, "absd121\0gfdhgfd", 5);
+    nTestAcepted += RUN_TEST(test_strncpy, "absd121\0gfdhgfd", 10);
+    nTestAcepted += RUN_TEST(test_strncpy, "absd121\0gfdhgfd", 20);
 
     // strcat
-    nTestAcepted += test_strcat("Hello ", "world!");
-    nTestAcepted += test_strcat("", "");
-    nTestAcepted += test_strcat("    ", "Hi!");
-    nTestAcepted += test_strcat("absd121\0gfdhgfd", "asafd");
+    nTestAcepted += RUN_TEST(test_strcat, "Hello ", "world!");
+    nTestAcepted += RUN_TEST(test_strcat, "", "");
+    nTestAcepted += RUN_TEST(test_strcat, "    ", "Hi!");
+    nTestAcepted += RUN_TEST(test_strcat, "absd121\0gfdhgfd", "asafd");
 
     // strncat
-    nTestAcepted += test_strncat("Hello ", "world!", 3);
-    nTestAcepted += test_strncat("Hello ", "world!", 30);
-    nTestAcepted += test_strncat("", "", 0);
-    nTestAcepted += test_strncat("", "", 5);
-    nTestAcepted += test_strncat("  ", "    ", 2);
-    nTestAcepted += test_strncat("  ", "    ", 4);
-    nTestAcepted += test_strncat("  ", "    ", 6);
+    nTestAcepted += RUN_TEST(test_strncat, "Hello ", "world!", 3);
+    nTestAcepted += RUN_TEST(test_strncat, "Hello ", "world!", 30);
+    nTestAcepted += RUN_TEST(test_strncat, "", "", 0);
+    nTestAcepted += RUN_TEST(test_strncat, "", "", 5);
+    nTestAcepted += RUN_TEST(test_strncat, "  ", "    ", 2);
+    nTestAcepted += RUN_TEST(test_strncat, "  ", "    ", 4);
+    nTestAcepted += RUN_TEST(test_strncat, "  ", "    ", 6);
 
     // strdup
-    nTestAcepted += test_strdup("Hello world!");
-    nTestAcepted += test_strdup("");
-    nTestAcepted += test_strdup("    ");
-    nTestAcepted += test_strdup("absd121\0gfdhgfd");
+    nTestAcepted += RUN_TEST(test_strdup, "Hello world!");
+    nTestAcepted += RUN_TEST(test_strdup, "");
+    nTestAcepted += RUN_TEST(test_strdup, "    ");
+    nTestAcepted += RUN_TEST(test_strdup, "absd121\0gfdhgfd");
 
     // strstr
-    nTestAcepted += test_strstr("Hello world!", "world");
-    nTestAcepted += test_strstr("Hello world!", "Hello");
-    nTestAcepted += test_strstr("Hello world!", "o");
-    nTestAcepted += test_strstr("Hello world!", "!");
-    nTestAcepted += test_strstr("Hello world!", "");
-    nTestAcepted += test_strstr("Hello world!", "bye");
-    nTestAcepted += test_strstr("Hello world!", "j");
-    nTestAcepted += test_strstr("aaaaaaaaaaaaaa", "aaaaaaaa");
-    nTestAcepted += test_strstr("aaaaabbbbbbbbbbb", "bbbbb");
-    nTestAcepted += test_strstr("aaabbbccc", "bbbb");
-    nTestAcepted += test_strstr("chachachack", "chack");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "world");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "Hello");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "o");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "!");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "bye");
+    nTestAcepted += RUN_TEST(test_strstr, "Hello world!", "j");
+    nTestAcepted += RUN_TEST(test_strstr, "aaaaaaaaaaaaaa", "aaaaaaaa");
+    nTestAcepted += RUN_TEST(test_strstr, "aaaaabbbbbbbbbbb", "bbbbb");
+    nTestAcepted += RUN_TEST(test_strstr, "aaabbbccc", "bbbb");
+    nTestAcepted += RUN_TEST(test_strstr, "chachachack", "chack");
 
     // fgets
-    nTestAcepted += test_fgets(10, "testfile.txt");
-    nTestAcepted += test_fgets(20, "testfile.txt");
+    nTestAcepted += RUN_TEST(test_fgets, 10, "testfile.txt");
+    nTestAcepted += RUN_TEST(test_fgets, 20, "testfile.txt");
 
     // getline
-    nTestAcepted += test_getline(10, "testfile.txt");
-    nTestAcepted += test_getline(0, "testfile.txt");
+    nTestAcepted += RUN_TEST(test_getline, 10, "testfile.txt");
+    nTestAcepted += RUN_TEST(test_getline, 0, "testfile.txt");
 
     ColouredPrintf(YELLOW, "%d tests acepted\n", nTestAcepted);
 
